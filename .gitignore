@@ -1,0 +1,19 @@
+# MkDocs
+mkdocs/site/
+
+# Hugo
+hugo/public/
+hugo/resources/
+
+# Docusaurus
+docusaurus/node_modules/
+docusaurus/build/
+docusaurus/.docusaurus/
+
+# Eleventy
+eleventy/node_modules/
+eleventy/_site/
+
+# OS
+.DS_Store
+Thumbs.db
