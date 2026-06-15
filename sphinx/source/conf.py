@@ -12,6 +12,7 @@ extensions = [
     "sphinx_copybutton",    # コードブロックのコピー ボタン
     "sphinx.ext.todo",      # TODO 管理
     "sphinx.ext.intersphinx",  # 他プロジェクトの文書を相互参照
+    "sphinxcontrib.mermaid",   # Mermaid のフローチャート・シーケンス図
 ]
 
 # Markdown と reStructuredText の両方を受け付ける
@@ -35,7 +36,9 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # ─── HTML 出力 ───
 html_theme = "furo"
 html_title = "社内プロジェクト文書"
-html_static_path = []
+# 日本語フォントを読みやすいサンセリフ体に統一する custom.css を読み込む
+html_static_path = ["_static"]
+html_css_files = ["custom.css"]
 
 # intersphinx の例（Python 公式ドキュメントを相互参照）
 intersphinx_mapping = {

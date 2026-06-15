@@ -12,6 +12,12 @@ const config = {
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
 
+  // ```mermaid コードブロックを図としてレンダリングする
+  markdown: {
+    mermaid: true,
+  },
+  themes: ["@docusaurus/theme-mermaid"],
+
   i18n: {
     defaultLocale: "ja",
     locales: ["ja"],

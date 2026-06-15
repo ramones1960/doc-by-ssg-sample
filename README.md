@@ -13,6 +13,53 @@
 | [Astro](./astro/) | JS (Starlight) | 軽量・検索内蔵・モダン | パフォーマンス重視のポータル |
 | [Eleventy](./eleventy/) | JavaScript | 設計自由度が高い・軽量 | カスタマイズしたいチーム |
 
+## 採用基準の比較表（観点別）
+
+採用を検討する際の観点を 1 つの表にまとめました。評価は ◎=得意 / ○=対応 / △=工夫が必要 / ✕=非対応（または標準外）の目安です。
+
+| 観点 | MkDocs | Sphinx | Hugo | Docusaurus | Astro | Eleventy |
+|---|:--:|:--:|:--:|:--:|:--:|:--:|
+| 言語 / ランタイム | Python | Python | Go バイナリ | Node.js / React | Node.js | Node.js |
+| 執筆フォーマット | Markdown | Markdown(MyST)/reST | Markdown | MDX(Markdown+JSX) | Markdown(MDX) | Markdown など自由 |
+| セットアップの容易さ | ◎ | △ | ◎ | △ | ○ | ○ |
+| ビルド速度 | ○ | ○ | ◎ | △ | ○ | ◎ |
+| テーマ・デザインの完成度 | ◎ | ○ | ○ | ◎ | ◎ | △（自作前提） |
+| 全文検索（標準） | ◎ | △ | ✕ | ◎ | ◎ | ✕ |
+| バージョン管理（複数版併存） | △（mike） | △ | △ | ◎ | △ | △ |
+| API 自動生成（docstring） | ✕ | ◎ | ✕ | ✕ | ✕ | ✕ |
+| 多形式出力（PDF / ePub） | △ | ◎ | ✕ | △ | ✕ | △ |
+| 図表（Mermaid） | ◎（テーマ内蔵） | ○（拡張） | ○（render hook） | ◎（公式テーマ） | ○（連携） | △（自前スクリプト） |
+| カスタマイズ自由度 | ○ | ○ | ○ | ○ | ○ | ◎ |
+| 主な用途 | 技術文書・API リファレンス | ライブラリ API・厳密な仕様書 | 大規模 Wiki | バージョン付き仕様書 | 高速ポータル | 独自設計サイト |
+
+> **観点ごとの最有力**
+> セットアップの容易さ → **MkDocs / Hugo**、ビルド速度 → **Hugo / Eleventy**、検索内蔵 → **MkDocs / Docusaurus / Astro**、
+> バージョン管理 → **Docusaurus**、API 自動生成・PDF 出力 → **Sphinx**、デザイン自由度 → **Eleventy**。
+
+## ホスティング・配布方法（全 SSG 共通）
+
+ここが分かれて見えがちですが、**6 つの SSG はすべて「静的 HTML」を出力する**ため、配布先は共通です。
+特定の SSG だけ GitLab Pages や静的 HTML 配布に縛られる、ということはありません。
+
+| 配布先 | 仕組み | 全 SSG 対応 |
+|---|---|:--:|
+| GitHub Pages | ビルド成果物を Pages（または private リポジトリの Pages）へ公開 | ✅ |
+| GitLab Pages | `.gitlab-ci.yml` でビルドし `public/` を artifacts として公開 | ✅ |
+| 静的 HTML 配布 | ビルド成果物（下表のディレクトリ）を社内 Web サーバー / 共有・zip 配布 | ✅ |
+
+各 SSG のビルド成果物ディレクトリ（このフォルダを上記いずれの方法でも配布できます）:
+
+| SSG | ビルド出力先 |
+|---|---|
+| MkDocs | `site/` |
+| Sphinx | `build/html/` |
+| Hugo | `public/` |
+| Docusaurus | `build/` |
+| Astro | `dist/` |
+| Eleventy | `_site/` |
+
+> いずれも認証は別途 nginx / Cloudflare Access 等で行う前提です（[設計方針](#前提社内利用を想定した設計方針)を参照）。
+
 ## リポジトリ構成（モノレポ）
 
 各 SSG はディレクトリで分離され、依存（npm / pip）も**それぞれのディレクトリに閉じています**。
@@ -38,10 +85,14 @@ doc-by-ssg-sample/
 
 各 SSG に同じ内容の文書を移植しています。記法の違い（注釈ボックス・サイドバー定義など）を見比べてください。
 
-- **プロジェクト概要** — 背景・目的・体制
+- **プロジェクト概要** — 背景・目的・体制（**画像（SVG）と Mermaid 図の挿入例**を含む）
 - **開発ガイド** — 環境構築・ブランチ運用
 - **API リファレンス** — エンドポイント一覧
 - **議事録** — 定例会議のサンプル
+
+各サンプルのトップページに「**図・画像の挿入例**」セクションを設け、画像（`architecture.svg`）と
+Mermaid 図（フローチャート・シーケンス図）を同じ内容で掲載しています。SSG ごとの Mermaid 有効化方法は
+上の[採用基準の比較表](#採用基準の比較表観点別)の「図表（Mermaid）」行を参照してください。
 
 ## 前提：社内利用を想定した設計方針
 
@@ -106,3 +157,5 @@ cd eleventy && npm install && npm run serve
 - [ ] デザインのカスタマイズ度は（11ty が最大自由度）
 - [ ] ページ数・ビルド速度（大規模なら Hugo）
 - [ ] PDF / ePub での配布が必要か（Sphinx が有利）
+- [ ] Mermaid 図を多用するか（MkDocs / Docusaurus は設定が最も手軽）
+- [ ] 配布先は？（GitHub Pages / GitLab Pages / 社内サーバーへの静的 HTML 配布 — **どの SSG でも対応可**）

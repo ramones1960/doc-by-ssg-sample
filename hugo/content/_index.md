@@ -40,6 +40,39 @@ description: "社内受発注システム刷新プロジェクトの技術文書
                                   └────────────────┘
 ```
 
+## 図・画像の挿入例
+
+### 画像の挿入
+
+`static/images/` に置いた画像は Markdown の標準記法で挿入できます。
+
+![プロジェクト X システム構成図](/images/architecture.svg)
+
+### Mermaid 図
+
+`mermaid` を指定したコードフェンスを、render hook（`layouts/_default/_markup/render-codeblock-mermaid.html`）が図に変換します。
+
+```mermaid
+flowchart LR
+    U[利用者] -->|発注| W[Web フロント]
+    W -->|REST API| A[バックエンド API]
+    A -->|SQL| D[(PostgreSQL)]
+    A -->|在庫照会| S[在庫サービス]
+```
+
+シーケンス図も書けます。
+
+```mermaid
+sequenceDiagram
+    participant W as Web フロント
+    participant A as バックエンド API
+    participant D as PostgreSQL
+    W->>A: POST /orders（発注）
+    A->>D: INSERT orders
+    D-->>A: order_id
+    A-->>W: 201 Created
+```
+
 ## マイルストーン
 
 | フェーズ | 期間 | 成果物 |

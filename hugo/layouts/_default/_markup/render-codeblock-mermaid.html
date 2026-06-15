@@ -1,0 +1,5 @@
+{{/* ```mermaid コードフェンスを図としてレンダリングするための render hook */}}
+<pre class="mermaid" aria-label="mermaid diagram">
+{{- .Inner | htmlEscape | safeHTML -}}
+</pre>
+{{ .Page.Store.Set "hasMermaid" true }}

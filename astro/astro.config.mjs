@@ -1,10 +1,13 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import starlight from "@astrojs/starlight";
+import mermaid from "astro-mermaid";
 
 // https://astro.build/config
 export default defineConfig({
   integrations: [
+    // ```mermaid コードブロックを図としてレンダリングする（starlight より前に置く）
+    mermaid({ theme: "default", autoTheme: true }),
     starlight({
       title: "社内プロジェクト文書",
       description: "プロジェクト X の技術文書・運用ガイド",

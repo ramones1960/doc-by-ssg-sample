@@ -1,0 +1,17 @@
+/* 日本語が読みやすいサンセリフ体に統一する（furo 既定の font-stack を上書き） */
+:root {
+  --font-stack:
+    "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans",
+    "Yu Gothic", "Meiryo", "BIZ UDPGothic", system-ui, sans-serif;
+  --font-stack--monospace:
+    "Roboto Mono", "Source Code Pro", "Noto Sans Mono CJK JP",
+    Consolas, Menlo, monospace;
+}
+
+/* Web フォント（Noto Sans JP）を読み込み、環境差をなくす */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap");
+
+body {
+  font-feature-settings: "palt";
+  letter-spacing: 0.02em;
+}
