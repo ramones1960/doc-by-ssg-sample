@@ -35,7 +35,9 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 # ─── HTML 出力 ───
 html_theme = "furo"
 html_title = "社内プロジェクト文書"
-html_static_path = []
+# 全フレームワーク共通の日本語フォントを読み込む
+html_static_path = ["_static"]
+html_css_files = ["custom.css"]
 
 # intersphinx の例（Python 公式ドキュメントを相互参照）
 intersphinx_mapping = {

@@ -1,9 +1,15 @@
 /* Docusaurus カスタムスタイル */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap");
+
 :root {
   --ifm-color-primary: #3b49df;
   --ifm-color-primary-dark: #2a38ce;
   --ifm-code-font-size: 90%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+  /* 全フレームワーク共通の読みやすい日本語フォントに統一 */
+  --ifm-font-family-base: "Noto Sans JP", "Noto Sans CJK JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, system-ui, sans-serif;
+  --ifm-font-family-monospace: "Noto Sans Mono CJK JP", ui-monospace, SFMono-Regular, Menlo, Consolas, "DejaVu Sans Mono", monospace;
+  --ifm-heading-font-family: var(--ifm-font-family-base);
 }
 
 [data-theme="dark"] {
