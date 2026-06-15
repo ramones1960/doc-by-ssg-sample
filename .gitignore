@@ -1,6 +1,10 @@
 # MkDocs
 mkdocs/site/
 
+# Sphinx
+sphinx/build/
+sphinx/.venv/
+
 # Hugo
 hugo/public/
 hugo/resources/
@@ -10,9 +14,18 @@ docusaurus/node_modules/
 docusaurus/build/
 docusaurus/.docusaurus/
 
+# Astro / Starlight
+astro/node_modules/
+astro/dist/
+astro/.astro/
+
 # Eleventy
 eleventy/node_modules/
 eleventy/_site/
+
+# Python
+**/.venv/
+__pycache__/
 
 # OS
 .DS_Store

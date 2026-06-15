@@ -1,0 +1,2 @@
+# MkDocs 用の Python 依存（このディレクトリ専用）
+mkdocs-material>=9.5.0
