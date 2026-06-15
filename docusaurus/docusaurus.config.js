@@ -5,7 +5,6 @@ const { themes } = require("prism-react-renderer");
 const config = {
   title: "社内プロジェクト文書",
   tagline: "プロジェクト X の技術文書・運用ガイド",
-  favicon: "img/favicon.ico",
 
   url: "https://your-internal-domain.example",
   baseUrl: "/",
@@ -63,9 +62,17 @@ const config = {
         darkTheme: themes.dracula,
         additionalLanguages: ["bash", "json", "yaml"],
       },
-      // 全文検索（Algolia DocSearch or ローカル検索）
-      // 社内利用なら @easyops-cn/docusaurus-search-local を推奨
     }),
+  plugins: [
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      {
+        hashed: true,
+        language: ["ja"],
+        docsRouteBasePath: "/",
+      },
+    ],
+  ],
 };
 
 module.exports = config;

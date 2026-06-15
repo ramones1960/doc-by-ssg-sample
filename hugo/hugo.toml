@@ -1,6 +1,12 @@
 baseURL = "/"
 locale = "ja"
+defaultContentLanguage = "ja"
 title = "社内プロジェクト文書"
+
+[languages]
+  [languages.ja]
+    locale = "ja"
+    title = "社内プロジェクト文書"
 
 [params]
   description = "プロジェクト X の技術文書・運用ガイド"

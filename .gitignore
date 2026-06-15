@@ -8,6 +8,7 @@ sphinx/.venv/
 # Hugo
 hugo/public/
 hugo/resources/
+hugo/.hugo_build.lock
 
 # Docusaurus
 docusaurus/node_modules/
