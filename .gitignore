@@ -27,6 +27,9 @@ eleventy/_site/
 **/.venv/
 __pycache__/
 
+# プロキシ設定（個人の認証情報を含む可能性があるためコミットしない）
+proxy.env
+
 # OS
 .DS_Store
 Thumbs.db

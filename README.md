@@ -21,6 +21,9 @@
 ```
 doc-by-ssg-sample/
 ├── README.md
+├── .npmrc              ← npm プロキシ設定（環境変数を参照）
+├── proxy.env.example   ← プロキシ環境変数テンプレート
+├── pip.conf.example    ← pip プロキシ設定テンプレート
 ├── mkdocs/        … requirements.txt（Python）
 ├── sphinx/        … requirements.txt（Python）
 ├── hugo/          … Go バイナリのみ（パッケージ管理なし）
@@ -46,6 +49,30 @@ doc-by-ssg-sample/
 - 認証は別途 nginx / Cloudflare Access 等で行う
 - Markdown で執筆し Git で変更管理
 
+## プロキシ環境での利用
+
+社内プロキシ経由でパッケージをインストールする場合は、**環境変数を設定するだけ**で
+すべてのパッケージ管理ツール（pip / npm / go）に自動的に適用されます。
+
+```bash
+# 1. テンプレートをコピーして編集（proxy.env はコミットされません）
+cp proxy.env.example proxy.env
+# proxy.env の HTTP_PROXY / HTTPS_PROXY / NO_PROXY を実際の値に書き換える
+
+# 2. 環境変数を読み込む
+source proxy.env
+
+# 3. あとは通常どおり各 SSG をセットアップするだけ
+```
+
+| ツール | プロキシの仕組み |
+|---|---|
+| **pip** | `HTTP_PROXY` / `HTTPS_PROXY` 環境変数を自動読み取り |
+| **npm** | ルートの `.npmrc` が `${HTTP_PROXY}` / `${HTTPS_PROXY}` を参照 |
+| **go install**（Hugo） | `HTTP_PROXY` / `HTTPS_PROXY` 環境変数を自動読み取り |
+
+> **社内 CA 証明書が必要な場合** — `pip.conf.example` を参照して pip に証明書を登録してください。
+
 ## 各 SSG を試す
 
 ```bash
@@ -67,6 +94,8 @@ cd astro && npm install && npm run dev
 # Eleventy（npm）
 cd eleventy && npm install && npm run serve
 ```
+
+> ビルド後のサイトはすべて `localhost` でアクセスします（`hugo server` → `:1313`、`mkdocs serve` → `:8000` 等）。
 
 ## 選定チェックリスト
 
