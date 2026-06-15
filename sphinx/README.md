@@ -23,12 +23,16 @@
 
 ## セットアップ
 
+Python 製のため、**venv 仮想環境の利用を推奨**します。システムの Python を
+汚さず依存を分離できます。仮想環境は **この `sphinx/` ディレクトリ直下の
+`.venv/`** に作成する前提です（`.venv/` は `.gitignore` 済み）。
+
 ```bash
 cd sphinx
 
-# 仮想環境（任意）
+# 仮想環境を作成・有効化（sphinx/.venv に作成）
 python -m venv .venv
-source .venv/bin/activate
+source .venv/bin/activate     # Windows: .venv\Scripts\activate
 
 # このディレクトリ専用の依存をインストール
 pip install -r requirements.txt
