@@ -1,5 +1,11 @@
 # Docusaurus サンプル
 
+## スクリーンショット
+
+| トップページ | 開発ガイド |
+|---|---|
+| ![トップページ](./docs/screenshots/index.png) | ![開発ガイド](./docs/screenshots/getting-started.png) |
+
 ## 特徴
 
 - **Facebook（Meta）製**の React ベースドキュメントサイトジェネレータ

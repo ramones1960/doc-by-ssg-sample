@@ -1,5 +1,11 @@
 # Eleventy（11ty）サンプル
 
+## スクリーンショット
+
+| トップページ | 開発ガイド |
+|---|---|
+| ![トップページ](./docs/screenshots/index.png) | ![開発ガイド](./docs/screenshots/getting-started.png) |
+
 ## 特徴
 
 - **JavaScript** 製で設定の自由度が最大

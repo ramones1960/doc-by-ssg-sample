@@ -1,5 +1,11 @@
 # Astro + Starlight サンプル
 
+## スクリーンショット
+
+| トップページ | 開発ガイド |
+|---|---|
+| ![トップページ](./docs/screenshots/index.png) | ![開発ガイド](./docs/screenshots/getting-started.png) |
+
 ## 特徴
 
 - **Astro** は「Islands Architecture」で **超軽量な静的サイト**を生成（デフォルトで JS ゼロ出力）

@@ -1,5 +1,11 @@
 # Sphinx サンプル
 
+## スクリーンショット
+
+| トップページ | 開発ガイド |
+|---|---|
+| ![トップページ](./docs/screenshots/index.png) | ![開発ガイド](./docs/screenshots/getting-started.png) |
+
 ## 特徴
 
 - **Python 製**。Python 公式ドキュメントや多くの OSS で採用される定番ツール

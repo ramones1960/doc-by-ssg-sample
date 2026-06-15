@@ -1,5 +1,11 @@
 # MkDocs サンプル
 
+## スクリーンショット
+
+| トップページ | 開発ガイド |
+|---|---|
+| ![トップページ](./docs/screenshots/index.png) | ![開発ガイド](./docs/screenshots/getting-started.png) |
+
 ## 特徴
 
 - **Python** で動作。`pip` だけで導入できる

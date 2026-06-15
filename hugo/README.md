@@ -1,5 +1,11 @@
 # Hugo サンプル
 
+## スクリーンショット
+
+| トップページ | 開発ガイド |
+|---|---|
+| ![トップページ](./docs/screenshots/index.png) | ![開発ガイド](./docs/screenshots/getting-started.png) |
+
 ## 特徴
 
 - **Go** 製のバイナリ 1 つで動作。インストールが超簡単

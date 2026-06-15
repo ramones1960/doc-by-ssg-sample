@@ -1,7 +1,6 @@
 baseURL = "/"
-languageCode = "ja"
+locale = "ja"
 title = "社内プロジェクト文書"
-theme = "docsy"
 
 [params]
   description = "プロジェクト X の技術文書・運用ガイド"

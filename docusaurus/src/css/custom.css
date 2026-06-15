@@ -1,0 +1,12 @@
+/* Docusaurus カスタムスタイル */
+:root {
+  --ifm-color-primary: #3b49df;
+  --ifm-color-primary-dark: #2a38ce;
+  --ifm-code-font-size: 90%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+  --ifm-color-primary: #7d88f4;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
