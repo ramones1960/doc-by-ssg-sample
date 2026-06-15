@@ -13,21 +13,22 @@ permalink: /docs/api-reference/
 
 ---
 
-## 受注管理
+## 運用計画（パス）管理
 
-### 受注一覧取得
+### 可視パス一覧取得
 
 ```
-GET /orders
+GET /passes
 ```
 
 **クエリパラメータ**
 
 | パラメータ | 型 | 必須 | 説明 |
 |---|---|---|---|
-| `status` | string | - | `pending` / `confirmed` / `shipped` / `cancelled` |
-| `from` | string (date) | - | 受注日の開始 |
-| `to` | string (date) | - | 受注日の終了 |
+| `status` | string | - | `scheduled` / `confirmed` / `executed` / `cancelled` |
+| `satellite_id` | string | - | 衛星 ID で絞り込み（例: `SAT-001`） |
+| `from` | string (date) | - | AOS（可視開始）日時の開始 |
+| `to` | string (date) | - | AOS 日時の終了 |
 | `limit` | integer | - | 取得件数（デフォルト: 20、最大: 100） |
 | `offset` | integer | - | オフセット（デフォルト: 0） |
 
@@ -38,11 +39,12 @@ GET /orders
   "total": 142,
   "items": [
     {
-      "id": "ORD-2025-00142",
+      "id": "PASS-2025-00142",
       "status": "confirmed",
-      "customer_id": "CUST-001",
-      "ordered_at": "2025-06-15T09:30:00+09:00",
-      "total_amount": 54800
+      "satellite_id": "SAT-001",
+      "ground_station": "GS-AKITA",
+      "aos_at": "2025-06-15T09:30:00+09:00",
+      "max_elevation_deg": 54.8
     }
   ]
 }
@@ -50,45 +52,46 @@ GET /orders
 
 ---
 
-### 受注作成
+### パス予約作成
 
 ```
-POST /orders
+POST /passes
 ```
 
 **リクエストボディ**
 
 ```json
 {
-  "customer_id": "CUST-001",
-  "lines": [
-    { "product_id": "PROD-0032", "quantity": 2 }
+  "satellite_id": "SAT-001",
+  "ground_station": "GS-AKITA",
+  "aos_at": "2025-06-15T09:30:00+09:00",
+  "tasks": [
+    { "task_id": "TASK-0032", "priority": 2 }
   ],
-  "note": "午前中指定"
+  "note": "夜間パス・低仰角注意"
 }
 ```
 
-**レスポンス** `201 Created`
-
 ---
 
-## 在庫管理
+## 衛星リソース管理
 
-### 在庫照会
+### テレメトリ照会
 
 ```
-GET /inventory/{product_id}
+GET /telemetry/{satellite_id}
 ```
 
 **レスポンス例**
 
 ```json
 {
-  "product_id": "PROD-0032",
-  "product_name": "ノートPC 15インチ",
-  "available": 24,
-  "reserved": 8,
-  "warehouse": "東京倉庫"
+  "satellite_id": "SAT-001",
+  "satellite_name": "ひかり 1 号",
+  "battery_pct": 87,
+  "storage_free_mb": 1240,
+  "mode": "nominal",
+  "ground_station": "GS-AKITA"
 }
 ```
 
@@ -100,6 +103,6 @@ GET /inventory/{product_id}
 |---|---|---|
 | `not_found` | 404 | リソースが存在しない |
 | `validation_error` | 422 | リクエストパラメータが不正 |
-| `insufficient_stock` | 409 | 在庫不足 |
+| `pass_conflict` | 409 | 指定時間帯に地上局が予約済み（パス競合） |
 | `unauthorized` | 401 | 認証トークンが無効 |
 | `forbidden` | 403 | 操作権限がない |
