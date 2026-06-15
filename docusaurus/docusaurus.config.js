@@ -4,7 +4,7 @@ const { themes } = require("prism-react-renderer");
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: "社内プロジェクト文書",
-  tagline: "プロジェクト X の技術文書・運用ガイド",
+  tagline: "プロジェクト Orbit の技術文書・運用ガイド",
 
   url: "https://your-internal-domain.example",
   baseUrl: "/",
@@ -43,11 +43,11 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: "プロジェクト X",
+        title: "プロジェクト Orbit",
         items: [
           { to: "/", label: "ドキュメント", position: "left" },
           {
-            href: "https://github.com/your-org/project-x",
+            href: "https://github.com/your-org/project-orbit",
             label: "GitHub",
             position: "right",
           },

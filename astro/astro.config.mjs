@@ -7,14 +7,14 @@ export default defineConfig({
   integrations: [
     starlight({
       title: "社内プロジェクト文書",
-      description: "プロジェクト X の技術文書・運用ガイド",
+      description: "プロジェクト Orbit の技術文書・運用ガイド",
       // 表示言語を日本語に
       defaultLocale: "root",
       locales: {
         root: { label: "日本語", lang: "ja" },
       },
       social: {
-        github: "https://github.com/your-org/project-x",
+        github: "https://github.com/your-org/project-orbit",
       },
       // サイドバー構成
       sidebar: [
