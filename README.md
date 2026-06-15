@@ -24,6 +24,8 @@ doc-by-ssg-sample/
 ├── .npmrc              ← npm プロキシ設定（環境変数を参照）
 ├── proxy.env.example   ← プロキシ環境変数テンプレート
 ├── pip.conf.example    ← pip プロキシ設定テンプレート
+├── docs/               ← リポジトリ用の資料（各 SSG の README で使うスクリーンショット）
+│   └── screenshots/<ssg>/{index,getting-started}.png
 ├── mkdocs/        … requirements.txt（Python）
 ├── sphinx/        … requirements.txt（Python）
 ├── hugo/          … Go バイナリのみ（パッケージ管理なし）
@@ -31,6 +33,10 @@ doc-by-ssg-sample/
 ├── astro/         … package.json（npm）
 └── eleventy/      … package.json（npm）
 ```
+
+各 SSG ディレクトリには、その SSG を動かすのに必要なファイルだけが入っています。
+README で使うスクリーンショットなどリポジトリ全体の資料は、各 SSG の公開コンテンツに
+混ざらないよう最上位の `docs/` にまとめています。
 
 各ディレクトリの `README.md` に、その SSG の特色・長所/短所・セットアップ手順を記載しています。
 
