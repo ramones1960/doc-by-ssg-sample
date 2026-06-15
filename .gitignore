@@ -1,0 +1,36 @@
+# MkDocs
+mkdocs/site/
+
+# Sphinx
+sphinx/build/
+sphinx/.venv/
+
+# Hugo
+hugo/public/
+hugo/resources/
+hugo/.hugo_build.lock
+
+# Docusaurus
+docusaurus/node_modules/
+docusaurus/build/
+docusaurus/.docusaurus/
+
+# Astro / Starlight
+astro/node_modules/
+astro/dist/
+astro/.astro/
+
+# Eleventy
+eleventy/node_modules/
+eleventy/_site/
+
+# Python
+**/.venv/
+__pycache__/
+
+# プロキシ設定（個人の認証情報を含む可能性があるためコミットしない）
+proxy.env
+
+# OS
+.DS_Store
+Thumbs.db

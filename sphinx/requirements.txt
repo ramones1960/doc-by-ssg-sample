@@ -1,0 +1,5 @@
+# Sphinx 用の Python 依存（このディレクトリ専用）
+sphinx>=7.3.0
+furo>=2024.8.6          # モダンなテーマ
+myst-parser>=3.0.0      # Markdown(MyST) を書けるようにする
+sphinx-copybutton>=0.5.2  # コードブロックにコピー ボタンを追加

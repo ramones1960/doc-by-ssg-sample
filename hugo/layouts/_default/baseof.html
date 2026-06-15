@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Lang }}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} — {{ .Site.Title }}{{ end }}</title>
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <nav class="sidebar">
+    <div class="sidebar-header">
+      <h1><a href="/">プロジェクト X</a></h1>
+      <small>社内文書ポータル</small>
+    </div>
+    <ul class="nav-list">
+      {{ range .Site.Menus.main }}
+      <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+      {{ end }}
+    </ul>
+  </nav>
+  <main class="content">
+    {{ block "main" . }}{{ end }}
+    <footer>社内限定 — プロジェクト X 開発チーム</footer>
+  </main>
+</body>
+</html>

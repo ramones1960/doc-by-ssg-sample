@@ -1,0 +1,15 @@
+{
+  "name": "project-x-docs-eleventy",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "serve": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "markdown-it": "^14.1.0",
+    "markdown-it-anchor": "^9.2.0",
+    "markdown-it-table-of-contents": "^0.6.0"
+  }
+}

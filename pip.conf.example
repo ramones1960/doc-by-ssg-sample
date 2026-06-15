@@ -1,0 +1,20 @@
+# pip プロキシ設定ファイルのサンプル
+#
+# 【使い方】
+#   プロキシが必要な場合、このファイルを ~/.config/pip/pip.conf（Linux/macOS）
+#   または %APPDATA%\pip\pip.ini（Windows）にコピーして値を書き換えてください。
+#   ※ 環境変数 HTTP_PROXY / HTTPS_PROXY を設定する方法でも同様に動作します。
+#
+# 【優先順位】  環境変数 > pip.conf > デフォルト
+
+[global]
+proxy = http://proxy.company.com:8080
+
+# 社内の自己署名証明書（CA バンドル）を信頼させる場合
+# cert = /path/to/company-ca-bundle.crt
+
+# 証明書検証を完全に無効化（非推奨・社内 CA を登録できない場合の暫定手段）
+# trusted-host =
+#     pypi.org
+#     files.pythonhosted.org
+#     pypi.python.org
