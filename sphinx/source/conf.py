@@ -43,6 +43,7 @@ exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
 html_theme = "furo"
 html_title = "社内プロジェクト文書"
 html_static_path = ["_static"]
+html_css_files = ["custom.css"]
 
 # intersphinx の例（Python 公式ドキュメントを相互参照）
 intersphinx_mapping = {

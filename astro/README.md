@@ -56,6 +56,103 @@ astro/
                 └── 2025-06.md
 ```
 
+## 基本操作（SSG の作り方）
+
+> 詳細は公式ドキュメント（[Astro](https://docs.astro.build/) / [Starlight](https://starlight.astro.build/ja/)）を参照。ここでは最低限必要な操作だけまとめます。
+
+### 記事（ページ）を追加する
+
+1. `src/content/docs/` 配下に Markdown（`.md` / `.mdx`）を置く
+2. サイドバーは `astro.config.mjs` の `sidebar` 配列に追記（または `autogenerate` でフォルダから自動生成）
+
+ファイル先頭の **Front Matter** に `title` が必須です。
+
+```markdown
+---
+title: インストール手順
+---
+
+本文をここに書く。
+```
+
+```js
+// astro.config.mjs（サイドバーに手動で追加する場合）
+sidebar: [
+  { label: "開発ガイド", link: "/getting-started/" },
+  { label: "インストール", link: "/install/" },   // 追加
+],
+```
+
+### 内部リンクを作る
+
+ルートからの絶対パスで他ページを指定します（Starlight がリンク切れをビルド時に検証）。
+
+```markdown
+詳しくは [開発ガイド](/getting-started/) を参照。
+```
+
+### 画像・静的ファイルを管理する
+
+- 最適化したい画像は `src/assets/` に置き、相対参照すると自動で最適化される
+- 加工不要なファイルは `public/` に置く（`public/img/foo.png` → `/img/foo.png`）
+
+```markdown
+![システム構成図](/img/architecture.png)
+```
+
+### ビルドとプレビュー
+
+```bash
+npm run dev       # http://localhost:4321 でライブプレビュー
+npm run build     # dist/ に出力（検索インデックス Pagefind もここで生成）
+npm run preview   # dist/ をローカルサーバーで確認
+```
+
+## 配布方法のメリット・デメリット
+
+### A. Web サーバーなしで HTML を直接配布する（file:// やファイル共有）
+
+| | |
+|---|---|
+| ✅ | デフォルトで JS ゼロの軽量な静的 HTML を出力するため、Web サーバーに置けば非常に高速 |
+| ❌ | 出力は **絶対パス**（`/_astro/…`）前提で、`file://` のダブルクリックや配置先が未確定だと CSS・リンクが崩れる |
+| ❌ | 全文検索（Pagefind）は JS でインデックスを `fetch` するため `file://` では動かない（`http://` 配信が前提） |
+| ⚠️ | サブフォルダ配布なら `astro.config.mjs` の `base` を配置パスに合わせる必要がある |
+
+### B. GitLab Pages と連携する
+
+`astro.config.mjs` に `site` と `base` を設定します。
+
+```js
+// astro.config.mjs
+export default defineConfig({
+  site: "https://<group>.gitlab.io",
+  base: "/<repo>/",   // プロジェクト配下に置く場合は必須
+  integrations: [/* starlight(...) */],
+});
+```
+
+```yaml
+# .gitlab-ci.yml
+pages:
+  image: node:20
+  script:
+    - cd astro && npm ci && npm run build
+    - mv dist ../public
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+```
+
+| | |
+|---|---|
+| ✅ | Web サーバー配信なら Pagefind 検索・ダークモードがすべて動作する |
+| ✅ | `base` を設定すればサブパス配信でもリンク・アセットが正しく解決される |
+| ❌ | `site` / `base` の設定漏れでリンクが崩れやすい |
+| ❌ | `npm ci` + ビルドで CI 時間がかかる（Hugo ほど速くはない） |
+
 ## 長所 / 短所
 
 | | |

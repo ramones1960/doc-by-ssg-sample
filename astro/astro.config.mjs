@@ -8,6 +8,7 @@ export default defineConfig({
     starlight({
       title: "社内プロジェクト文書",
       description: "プロジェクト Orbit の技術文書・運用ガイド",
+      customCss: ["./src/styles/custom.css"],
       // 表示言語を日本語に
       defaultLocale: "root",
       locales: {

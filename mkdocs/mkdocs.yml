@@ -5,6 +5,9 @@ site_author: 開発チーム
 theme:
   name: material
   language: ja
+  font:
+    text: Noto Sans JP
+    code: Noto Sans Mono
   palette:
     - scheme: default
       primary: indigo
