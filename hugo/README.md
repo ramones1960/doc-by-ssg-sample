@@ -4,7 +4,7 @@
 
 | トップページ | 開発ガイド |
 |---|---|
-| ![トップページ](./docs/screenshots/index.png) | ![開発ガイド](./docs/screenshots/getting-started.png) |
+| ![トップページ](../docs/screenshots/hugo/index.png) | ![開発ガイド](../docs/screenshots/hugo/getting-started.png) |
 
 ## 特徴
 

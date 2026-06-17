@@ -13,6 +13,10 @@
 | [Astro](./astro/) | JS (Starlight) | 軽量・検索内蔵・モダン | パフォーマンス重視のポータル |
 | [Eleventy](./eleventy/) | JavaScript | 設計自由度が高い・軽量 | カスタマイズしたいチーム |
 
+> **MkDocs を検討する際の注意** — MkDocs 本体および Material for MkDocs は
+> 現在ほぼ更新が止まっており、後継として **Zensical** が開発中です。
+> 詳細は [mkdocs/README.md](./mkdocs/) の「参考情報」を参照してください。
+
 ## リポジトリ構成（モノレポ）
 
 各 SSG はディレクトリで分離され、依存（npm / pip）も**それぞれのディレクトリに閉じています**。
@@ -24,6 +28,8 @@ doc-by-ssg-sample/
 ├── .npmrc              ← npm プロキシ設定（環境変数を参照）
 ├── proxy.env.example   ← プロキシ環境変数テンプレート
 ├── pip.conf.example    ← pip プロキシ設定テンプレート
+├── docs/               ← リポジトリ用の資料（各 SSG の README で使うスクリーンショット）
+│   └── screenshots/<ssg>/{index,getting-started}.png
 ├── mkdocs/        … requirements.txt（Python）
 ├── sphinx/        … requirements.txt（Python）
 ├── hugo/          … Go バイナリのみ（パッケージ管理なし）
@@ -31,6 +37,10 @@ doc-by-ssg-sample/
 ├── astro/         … package.json（npm）
 └── eleventy/      … package.json（npm）
 ```
+
+各 SSG ディレクトリには、その SSG を動かすのに必要なファイルだけが入っています。
+README で使うスクリーンショットなどリポジトリ全体の資料は、各 SSG の公開コンテンツに
+混ざらないよう最上位の `docs/` にまとめています。
 
 各ディレクトリの `README.md` に、その SSG の特色・長所/短所・セットアップ手順を記載しています。
 
@@ -75,12 +85,29 @@ source proxy.env
 
 ## 各 SSG を試す
 
-```bash
-# MkDocs（Python）
-cd mkdocs && pip install -r requirements.txt && mkdocs serve
+> **Python 製の SSG（MkDocs / Sphinx）は venv 仮想環境の利用を推奨します。**
+> システムの Python を汚さず、SSG ごとに依存を分離できます。仮想環境は
+> **各 SSG ディレクトリ直下の `.venv/`** に作成する前提です（`.venv/` は
+> `.gitignore` 済み）。
 
-# Sphinx（Python）
-cd sphinx && pip install -r requirements.txt && sphinx-build -b html source build/html
+```bash
+# MkDocs（Python / venv 推奨）
+cd mkdocs
+python -m venv .venv          # mkdocs/.venv に仮想環境を作成
+source .venv/bin/activate     # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+mkdocs serve
+deactivate                    # 終了時（任意）
+cd ..
+
+# Sphinx（Python / venv 推奨）
+cd sphinx
+python -m venv .venv          # sphinx/.venv に仮想環境を作成
+source .venv/bin/activate     # Windows: .venv\Scripts\activate
+pip install -r requirements.txt
+sphinx-build -b html source build/html
+deactivate                    # 終了時（任意）
+cd ..
 
 # Hugo（Go バイナリ）
 cd hugo && hugo server

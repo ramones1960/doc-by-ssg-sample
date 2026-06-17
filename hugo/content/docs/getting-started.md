@@ -19,8 +19,8 @@ description: "開発環境の構築手順とブランチ運用ルール"
 
 ```bash
 # リポジトリのクローン
-git clone https://github.com/your-org/project-x.git
-cd project-x/backend
+git clone https://github.com/your-org/project-orbit.git
+cd project-orbit/backend
 
 # 仮想環境の作成・有効化
 python -m venv .venv
@@ -43,7 +43,7 @@ uvicorn app.main:app --reload
 ### フロントエンドのセットアップ
 
 ```bash
-cd project-x/frontend
+cd project-orbit/frontend
 
 npm install
 cp .env.example .env.local
@@ -79,7 +79,7 @@ main          ← 本番リリース済みコード（直接 push 禁止）
 
 ```python
 # 良い例: 型ヒントを必ず付ける
-async def get_order(order_id: int) -> OrderResponse:
+async def get_pass(pass_id: str) -> PassResponse:
     ...
 ```
 
