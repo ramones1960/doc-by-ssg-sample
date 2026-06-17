@@ -9,6 +9,7 @@
 getting-started
 api-reference
 meeting-notes/2025-06
+revision-demo
 ```
 
 ## プロジェクト概要
