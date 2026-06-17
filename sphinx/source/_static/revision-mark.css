@@ -1,0 +1,61 @@
+/* ── 改訂マーク（change bar） ──────────────────────────────
+ *
+ *  .revision-mark ブロックの右端に縦線を引き、
+ *  ::after 擬似要素で版番号ラベルを縦線の右上に表示する。
+ *
+ *  ┌─────────────────────────────┐
+ *  │  改訂があった段落のテキスト  │ |A
+ *  │  続きのテキスト              │ |
+ *  └─────────────────────────────┘
+ *
+ * ──────────────────────────────────────────────────────── */
+
+.revision-mark {
+    position: relative;
+    /* 縦線 + ラベル分の右余白 */
+    padding-right: 2.6em;
+    /* 通常のコンテンツ右余白を消してボーダーと揃える */
+    box-sizing: border-box;
+}
+
+/* 縦線本体 */
+.revision-mark::before {
+    content: '';
+    position: absolute;
+    right: 1.8em;
+    top: 0;
+    bottom: 0;
+    border-right: 3px solid #555;
+}
+
+/* 版番号ラベル（縦線の右上） */
+.revision-mark::after {
+    content: attr(data-revision);
+    position: absolute;
+    right: 0.2em;
+    top: 0;
+    font-size: 0.78em;
+    font-weight: bold;
+    color: #333;
+    font-family: monospace;
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
+/* ダークテーマ対応 */
+@media (prefers-color-scheme: dark) {
+    .revision-mark::before {
+        border-right-color: #aaa;
+    }
+    .revision-mark::after {
+        color: #ccc;
+    }
+}
+
+/* Furo テーマのダーク切替クラスにも対応 */
+[data-theme="dark"] .revision-mark::before {
+    border-right-color: #aaa;
+}
+[data-theme="dark"] .revision-mark::after {
+    color: #ccc;
+}

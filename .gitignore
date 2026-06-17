@@ -3,6 +3,7 @@ mkdocs/site/
 
 # Sphinx
 sphinx/build/
+sphinx/source/_build/
 sphinx/.venv/
 
 # Hugo
