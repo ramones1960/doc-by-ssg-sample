@@ -156,6 +156,7 @@ pages:
 | ❌ | JavaScript/React に慣れたチームには学習コストあり |
 | ❌ | バージョン管理は mike プラグインが別途必要 |
 | ⚠️ | 本体・Material テーマとも更新が停滞中（下記「参考情報」を参照） |
+| ⚠️ | PDF 出力は mkdocs-with-pdf（WeasyPrint）プラグインで対応可。CSS @page でヘッダー・フッターの設定は可能だが Sphinx ほど細かくない |
 
 ## 参考情報 — MkDocs 本体の開発状況と後継プロジェクト
 

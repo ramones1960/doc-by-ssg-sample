@@ -132,4 +132,5 @@ cd eleventy && npm install && npm run serve
 - [ ] 全文検索を手軽に使いたいか（Astro / Starlight は標準内蔵）
 - [ ] デザインのカスタマイズ度は（11ty が最大自由度）
 - [ ] ページ数・ビルド速度（大規模なら Hugo）
-- [ ] PDF / ePub での配布が必要か（Sphinx が有利）
+- [ ] PDF での配布が必要か（Sphinx が有利）
+- [ ] PDF のヘッダー・フッター・余白など体裁を細かく制御したいか（Sphinx のみ LaTeX で完全対応、MkDocs は WeasyPrint プラグインで部分対応、その他の SSG は限定的）

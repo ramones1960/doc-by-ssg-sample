@@ -162,6 +162,7 @@ pages:
 | ✅ | docstring からの API 自動生成（autodoc）が強力 |
 | ✅ | 相互参照・リンク切れ検出が厳密 |
 | ✅ | PDF / ePub など多彩な出力形式 |
+| ✅ | LaTeX 経由の PDF でヘッダー・フッター・余白・フォントを細かく制御できる（Word 品質の出力が可能） |
 | ✅ | MyST で Markdown も書ける |
 | ❌ | reStructuredText の学習コストが高め |
 | ❌ | 設定（conf.py）がやや複雑 |
