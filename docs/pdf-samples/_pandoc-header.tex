@@ -1,0 +1,26 @@
+% 日本語フォントプリセット（luatexja-preset の ipaex を使用）
+\usepackage[ipaex]{luatexja-preset}
+
+% 総ページ数ラベル（lastpage.sty の代替）
+\AtEndDocument{\label{LastPage}}
+
+% ヘッダー・フッター
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\nouppercase{\leftmark}}
+\fancyhead[R]{\small 社内プロジェクト文書}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyfoot[L]{\small 社内限定}
+\fancyfoot[C]{\small \thepage\ /\ \pageref{LastPage}}
+\fancyfoot[R]{\small \today}
+\renewcommand{\footrulewidth}{0.4pt}
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyhead[R]{\small 社内プロジェクト文書}
+  \fancyfoot[L]{\small 社内限定}
+  \fancyfoot[C]{\small \thepage\ /\ \pageref{LastPage}}
+  \fancyfoot[R]{\small \today}
+  \renewcommand{\headrulewidth}{0.0pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+}
