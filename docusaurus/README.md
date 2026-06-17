@@ -159,3 +159,4 @@ pages:
 | ❌ | Node.js / React の知識が前提 |
 | ❌ | 初回 `npm install` が重い（依存が多い） |
 | ❌ | ビルド速度は MkDocs / Hugo より遅い |
+| ❌ | PDF 出力は非標準（Puppeteer プラグインが必要）。ヘッダー・フッターなど体裁の制御は限定的 |

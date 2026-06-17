@@ -52,3 +52,55 @@ intersphinx_mapping = {
 
 # todo を本文に表示する
 todo_include_todos = True
+
+# ─── PDF (LaTeX) 出力 ───
+# lualatex を使うと Unicode・日本語フォントの扱いが楽
+latex_engine = "lualatex"
+
+latex_documents = [
+    # (startdocname, targetname, title, author, theme, toctree_only)
+    ("index", "shakai-project-docs.tex", "社内プロジェクト文書", "開発チーム", "manual"),
+]
+
+latex_elements = {
+    # ── 用紙サイズ・余白（Word 標準に近い設定）──
+    "papersize": "a4paper",
+    "pointsize": "11pt",
+    # ── LaTeX プリアンブル ──
+    "preamble": r"""
+% ページ総数を参照するために必要
+\usepackage{lastpage}
+
+% ヘッダー・フッターのカスタマイズ
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+
+% ── ヘッダー ──
+% 左：現在の章タイトル（\leftmark）
+% 右：文書タイトル固定文字列
+\fancyhead[L]{\small\nouppercase{\leftmark}}
+\fancyhead[R]{\small 社内プロジェクト文書}
+\renewcommand{\headrulewidth}{0.4pt}   % ヘッダー下の罫線
+
+% ── フッター ──
+% 左：機密区分ラベル
+% 中：ページ番号 (X / 総ページ数)
+% 右：ビルド日付
+\fancyfoot[L]{\small 社内限定}
+\fancyfoot[C]{\small \thepage\ /\ \pageref{LastPage}}
+\fancyfoot[R]{\small \today}
+\renewcommand{\footrulewidth}{0.4pt}   % フッター上の罫線
+
+% 章の先頭ページ（plain スタイル）も同じフッターにする
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyhead[R]{\small 社内プロジェクト文書}
+  \fancyfoot[L]{\small 社内限定}
+  \fancyfoot[C]{\small \thepage\ /\ \pageref{LastPage}}
+  \fancyfoot[R]{\small \today}
+  \renewcommand{\headrulewidth}{0.0pt}
+  \renewcommand{\footrulewidth}{0.4pt}
+}
+""",
+}
