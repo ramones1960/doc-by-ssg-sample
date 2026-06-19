@@ -7,6 +7,10 @@
 このリポジトリは、**Documentation as Code（DaC、ドキュメント・アズ・コード）** の概念を学び、
 それを実践するための**フレームワーク（SSG）を比較・選定する**ことを目的としています。
 
+> **DaC の概念を深く学ぶ** → [`docs/concepts/`](./docs/concepts/) に解説コンテンツをまとめています。
+> [DaC ワークフロー解説](./docs/concepts/dac-workflow.md) と
+> [Developer Portal / IDP 解説](./docs/concepts/developer-portal.md) を参照してください。
+
 ## Documentation as Code とは
 
 **Documentation as Code（DaC）** とは、ドキュメントをソースコードと同じように扱い、
