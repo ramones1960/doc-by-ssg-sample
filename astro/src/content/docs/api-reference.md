@@ -9,6 +9,15 @@ description: 地上管制システム REST API のエンドポイント一覧
 
 ---
 
+## 共通仕様
+
+- **日時フォーマット**: ISO 8601・JST（例: `2025-06-15T09:30:00+09:00`）
+- **ページネーション**: `limit`（デフォルト 20・最大 100）と `offset` を共通サポート。レスポンスに総件数 `total` を含む
+- **レート制限**: 1 トークンあたり 600 リクエスト/分。超過時は `429 rate_limited` を返却し、`Retry-After` ヘッダで再試行可能秒数を通知
+- **冪等性**: `POST /passes` は `Idempotency-Key` ヘッダで重複作成を防止できる
+
+---
+
 ## 運用計画（パス）管理
 
 ### 可視パス一覧取得
@@ -103,6 +112,88 @@ GET /telemetry/{satellite_id}
 
 ---
 
+### テレメトリ履歴取得
+
+```
+GET /telemetry/{satellite_id}/history
+```
+
+**クエリパラメータ**
+
+| パラメータ | 型 | 必須 | 説明 |
+|---|---|---|---|
+| `from` | string (date) | ○ | 取得開始日時 |
+| `to` | string (date) | ○ | 取得終了日時 |
+| `interval` | string | - | 集計間隔（`1m` / `5m` / `1h`、デフォルト `5m`） |
+
+**レスポンス例**
+
+```json
+{
+  "satellite_id": "SAT-001",
+  "interval": "5m",
+  "items": [
+    { "at": "2025-06-15T09:30:00+09:00", "battery_pct": 87, "temp_c": 12.4 },
+    { "at": "2025-06-15T09:35:00+09:00", "battery_pct": 86, "temp_c": 12.1 }
+  ]
+}
+```
+
+---
+
+## コマンド管理
+
+### コマンド送信
+
+```
+POST /commands
+```
+
+衛星へのコマンドは、可視パス（`pass_id`）に紐づけてキューイングされ、AOS 後に順次実行されます。
+
+**リクエストボディ**
+
+```json
+{
+  "satellite_id": "SAT-001",
+  "pass_id": "PASS-2025-00142",
+  "command": "CAPTURE_IMAGE",
+  "params": { "sensor": "optical", "exposure_ms": 12 }
+}
+```
+
+**レスポンス** `202 Accepted`
+
+```json
+{
+  "command_id": "CMD-2025-04821",
+  "status": "queued"
+}
+```
+
+---
+
+## 地上局
+
+### 地上局一覧取得
+
+```
+GET /ground-stations
+```
+
+**レスポンス例**
+
+```json
+{
+  "items": [
+    { "id": "GS-AKITA", "name": "秋田局", "location": "秋田県", "status": "online" },
+    { "id": "GS-OKINAWA", "name": "沖縄局", "location": "沖縄県", "status": "maintenance" }
+  ]
+}
+```
+
+---
+
 ## エラーコード一覧
 
 | コード | HTTP | 説明 |
@@ -112,3 +203,4 @@ GET /telemetry/{satellite_id}
 | `pass_conflict` | 409 | 指定時間帯に地上局が予約済み（パス競合） |
 | `unauthorized` | 401 | 認証トークンが無効 |
 | `forbidden` | 403 | 操作権限がない |
+| `rate_limited` | 429 | レート制限を超過（`Retry-After` を参照） |

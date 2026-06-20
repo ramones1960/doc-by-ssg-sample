@@ -114,3 +114,68 @@ npm test
 # E2E（Playwright）
 npm run test:e2e
 ```
+
+---
+
+## ディレクトリ構成
+
+```
+project-orbit/
+├── backend/              # FastAPI バックエンド
+│   ├── app/
+│   │   ├── main.py       # エントリポイント
+│   │   ├── api/          # ルーター（passes / telemetry / commands）
+│   │   ├── models/       # SQLAlchemy モデル
+│   │   ├── schemas/      # Pydantic スキーマ
+│   │   └── services/     # ビジネスロジック
+│   ├── alembic/          # DB マイグレーション
+│   └── tests/
+├── frontend/             # React 管制コンソール
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   └── api/          # API クライアント
+│   └── tests/
+└── docker-compose.yml
+```
+
+---
+
+## 主要な環境変数
+
+| 変数名 | 例 | 説明 |
+|---|---|---|
+| `DATABASE_URL` | `postgresql://orbit:***@localhost:5432/orbit` | PostgreSQL 接続文字列 |
+| `GROUND_STATION_GW_URL` | `https://gw.internal.example` | 地上局ゲートウェイの URL |
+| `JWT_SECRET` | `(32 文字以上のランダム文字列)` | API トークン署名鍵 |
+| `LOG_LEVEL` | `INFO` | ログレベル（`DEBUG` / `INFO` / `WARNING`） |
+| `TELEMETRY_POLL_SEC` | `5` | テレメトリ取得間隔（秒） |
+
+!!! danger "秘密情報の取り扱い"
+    `.env` は **コミットしないでください**。変数を追加したら `.env.example` を更新してチームに共有します。
+
+---
+
+## トラブルシューティング
+
+??? note "`alembic upgrade head` で DB 接続エラーになる"
+    DB コンテナが起動しているか確認してください。
+
+    ```bash
+    docker compose ps          # db が Up になっているか
+    docker compose up -d db    # 起動していなければ起動
+    ```
+
+    それでも失敗する場合は `DATABASE_URL` のホスト・ポート・認証情報を確認します。
+
+??? note "`uvicorn` 起動時に `ModuleNotFoundError` が出る"
+    仮想環境が有効化されていない可能性があります。
+
+    ```bash
+    source .venv/bin/activate
+    pip install -r requirements.txt
+    ```
+
+??? note "フロントエンドから API が CORS で弾かれる"
+    バックエンドの CORS 許可オリジンにフロントエンドの URL（例: `http://localhost:5173`）が
+    含まれているか確認してください。`backend/app/main.py` の `CORSMiddleware` 設定を参照します。
