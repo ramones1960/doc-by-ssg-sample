@@ -1,5 +1,17 @@
 # Sphinx サンプル
 
+## Sphinx をはじめて触る人へ
+
+このサンプルには「Sphinx 自体を学ぶ」ための解説ページを `source/` に同梱しています。
+初めての場合は、まず次の順で読むとゼロから自分で文書を作れるようになります。
+
+1. `source/about-sphinx.md` — **Sphinx とは / 設計思想**（全体像をつかむ）
+2. `source/structure.md` — **プロジェクト構成の解剖**（`source/` `build/` `conf.py` の関係）
+3. `source/conf-py-guide.md` — **conf.py 設定ガイド**（最小構成〜本サンプルを逐条解説）
+4. `source/tutorial-from-scratch.md` — **ゼロから作るチュートリアル**（空ディレクトリ → HTML / PDF / ePub）
+
+これらは HTML ビルド後、トップページの「Sphinx を学ぶ」セクションからも読めます。
+
 ## スクリーンショット
 
 | トップページ | 開発ガイド |

@@ -4,7 +4,17 @@
 
 ```{toctree}
 :maxdepth: 2
-:caption: 目次
+:caption: Sphinx を学ぶ
+
+about-sphinx
+structure
+conf-py-guide
+tutorial-from-scratch
+```
+
+```{toctree}
+:maxdepth: 2
+:caption: プロジェクト Orbit（サンプル文書）
 
 getting-started
 api-reference
