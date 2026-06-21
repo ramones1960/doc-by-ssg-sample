@@ -114,11 +114,43 @@ source/
 
 ```bash
 sphinx-build -b html source build/html       # HTML（build/html/）
-sphinx-build -b latexpdf source build/pdf    # PDF（要 LaTeX）
+sphinx-build -M latexpdf source build        # PDF（build/latex/*.pdf、要 LaTeX）
 sphinx-build -b epub source build/epub       # ePub
 
 # ライブリロード（pip install sphinx-autobuild）
 sphinx-autobuild source build/html
+```
+
+## PDF（文書納品）での出力
+
+Sphinx は **表紙・目次・ヘッダー/フッター付きの文書 PDF** を生成できます（Word 納品の代替）。
+本サンプルの `conf.py` では次を設定済みです。
+
+| 要素 | 実現方法（`conf.py`） |
+|---|---|
+| **表紙** | `latex_elements["maketitle"]`：機密区分・タイトル・版・発行日を記載 |
+| **目次** | `latex_elements["tableofcontents"]`：前付けはローマ数字、本文はアラビア数字 |
+| **ヘッダー** | fancyhdr で `normal`/`plain` を再定義（左：章タイトル／右：文書名）|
+| **フッター** | 左：機密区分「社内限定」／中：`ページ / 総ページ` ／右：発行日 |
+| **改訂マーク** | `revision` ディレクティブが PDF では右端の改訂バー＋`[改訂 X]`ラベルで出力 |
+
+日本語 PDF は **uplatex（`jsbook` クラス）+ dvipdfmx** を使います（`latex_engine = "uplatex"`）。
+
+```bash
+# 必要な TeX（Debian/Ubuntu の例）
+sudo apt-get install -y --no-install-recommends \
+  texlive-luatex texlive-latex-recommended texlive-latex-extra \
+  texlive-fonts-recommended texlive-lang-japanese tex-gyre latexmk
+
+# 標準ビルド（latexmk が uplatex→dvipdfmx を自動実行）
+sphinx-build -M latexpdf source build         # → build/latex/shakai-project-docs.pdf
+
+# latexmk が無い環境での手動ビルド
+sphinx-build -b latex source build/latex
+cd build/latex
+uplatex shakai-project-docs.tex               # 目次・相互参照のため 2〜3 回
+uplatex shakai-project-docs.tex
+dvipdfmx shakai-project-docs.dvi              # → shakai-project-docs.pdf
 ```
 
 ## 配布方法のメリット・デメリット

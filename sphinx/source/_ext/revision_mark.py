@@ -58,8 +58,10 @@ def depart_revision_html(self, node):
 
 
 def visit_revision_latex(self, node):
-    # LaTeX: use a simple marginal note with a vertical rule approximation
-    self.body.append(r'\begin{revisionblock}')
+    # LaTeX(PDF): 右側に改訂バーを描く revisionblock 環境（conf.py で定義）に
+    # 改訂ラベルを引数として渡す。
+    label = node['revision']
+    self.body.append('\\begin{revisionblock}{%s}' % label)
 
 
 def depart_revision_latex(self, node):
