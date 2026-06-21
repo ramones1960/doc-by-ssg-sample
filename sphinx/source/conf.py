@@ -19,6 +19,7 @@ extensions = [
     "sphinx.ext.todo",      # TODO 管理
     "sphinx.ext.intersphinx",  # 他プロジェクトの文書を相互参照
     "revision_mark",        # 改訂マーク（縦線 + 版番号）
+    "sphinxcontrib.mermaid",  # Mermaid 図（フローチャート・シーケンス図など）
 ]
 
 # Markdown と reStructuredText の両方を受け付ける

@@ -58,6 +58,7 @@ sphinx/
     ├── index.md            # トップ + toctree（目次ツリー）
     ├── getting-started.md
     ├── api-reference.md
+    ├── diagrams.md         # Mermaid 図のサンプル
     └── meeting-notes/
         └── 2025-06.md
 ```
@@ -109,6 +110,37 @@ source/
 ```markdown
 ![システム構成図](_static/architecture.png)
 ```
+
+### Mermaid 図を挿入する
+
+**sphinxcontrib-mermaid** 拡張（`requirements.txt` に含む）を使うと、
+Markdown の中にテキストで図を記述できます。Git での差分追跡・レビューが容易です。
+
+`````markdown
+```{mermaid}
+flowchart TD
+    A[コンソール] -->|REST API| B[バックエンド API]
+    B --> C[(PostgreSQL)]
+    B --> D[地上局 GW]
+```
+`````
+
+対応している主な図の種類：
+
+| 種類 | 用途 |
+|---|---|
+| `flowchart` | 処理フロー・システム構成 |
+| `sequenceDiagram` | API 呼び出し・コンポーネント間通信 |
+| `erDiagram` | DB テーブル設計 |
+| `gantt` | プロジェクトスケジュール |
+
+PDF（LaTeX）出力で図をレンダリングするには Node.js と Mermaid CLI が必要です。
+
+```bash
+npm install -g @mermaid-js/mermaid-cli
+```
+
+詳しいサンプルは `source/diagrams.md` を参照してください。
 
 ### ビルドとプレビュー
 
