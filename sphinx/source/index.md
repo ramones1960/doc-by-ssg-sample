@@ -82,9 +82,9 @@ revision-demo
 
 ## 関連ドキュメント
 
-- [開発ガイド](getting-started.md) — 環境構築・ブランチ運用・コーディング規約
-- [API リファレンス](api-reference.md) — 管制バックエンド API の仕様
-- [議事録（2025 年 6 月）](meeting-notes/2025-06.md) — 定例・設計レビューの記録
+- {doc}`開発ガイド <getting-started>` — 環境構築・ブランチ運用・コーディング規約
+- {doc}`API リファレンス <api-reference>` — 管制バックエンド API の仕様
+- {doc}`議事録（2025 年 6 月） <meeting-notes/2025-06>` — 定例・設計レビューの記録
 
 :::{note}
 この文書は Sphinx + MyST(Markdown) + Furo テーマで管理しています。

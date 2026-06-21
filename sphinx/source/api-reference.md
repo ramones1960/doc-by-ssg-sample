@@ -29,8 +29,8 @@ GET /passes
 |---|---|---|---|
 | `status` | string | - | `scheduled` / `confirmed` / `executed` / `cancelled` |
 | `satellite_id` | string | - | 衛星 ID で絞り込み（例: `SAT-001`） |
-| `from` | string (date) | - | AOS（可視開始）日時の開始 |
-| `to` | string (date) | - | AOS 日時の終了 |
+| `from` | string (date-time) | - | AOS（可視開始）日時の開始 |
+| `to` | string (date-time) | - | AOS 日時の終了 |
 | `limit` | integer | - | 取得件数（デフォルト: 20、最大: 100） |
 | `offset` | integer | - | オフセット（デフォルト: 0） |
 
@@ -131,8 +131,8 @@ GET /telemetry/{satellite_id}/history
 
 | パラメータ | 型 | 必須 | 説明 |
 |---|---|---|---|
-| `from` | string (date) | ○ | 取得開始日時 |
-| `to` | string (date) | ○ | 取得終了日時 |
+| `from` | string (date-time) | ○ | 取得開始日時 |
+| `to` | string (date-time) | ○ | 取得終了日時 |
 | `interval` | string | - | 集計間隔（`1m` / `5m` / `1h`、デフォルト `5m`） |
 
 **レスポンス例**
