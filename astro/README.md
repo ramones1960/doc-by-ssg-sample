@@ -46,6 +46,9 @@ astro/
 ├── package.json            # npm 依存（このディレクトリ専用）
 ├── astro.config.mjs        # Astro + Starlight 設定（サイドバー等）
 └── src/
+    ├── env.d.ts            # 型定義（Astro が生成）
+    ├── styles/
+    │   └── custom.css      # カスタム CSS（astro.config.mjs が参照）
     └── content/
         ├── config.ts       # コンテンツコレクション定義
         └── docs/
