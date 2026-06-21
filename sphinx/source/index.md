@@ -8,6 +8,7 @@
 
 getting-started
 api-reference
+diagrams
 meeting-notes/2025-06
 revision-demo
 ```
@@ -84,6 +85,7 @@ revision-demo
 
 - {doc}`開発ガイド <getting-started>` — 環境構築・ブランチ運用・コーディング規約
 - {doc}`API リファレンス <api-reference>` — 管制バックエンド API の仕様
+- {doc}`図の挿入（Mermaid） <diagrams>` — フローチャート・シーケンス図・ER 図などの描き方
 - {doc}`議事録（2025 年 6 月） <meeting-notes/2025-06>` — 定例・設計レビューの記録
 
 :::{note}
