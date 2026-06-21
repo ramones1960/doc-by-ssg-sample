@@ -35,5 +35,5 @@ title = "社内プロジェクト文書"
     weight = 3
   [[menu.main]]
     name = "議事録"
-    url = "/docs/meeting-notes/"
+    url = "/docs/meeting-notes/2025-06/"
     weight = 4

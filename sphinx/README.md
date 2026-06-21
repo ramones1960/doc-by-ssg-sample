@@ -59,8 +59,12 @@ sphinx/
     ├── getting-started.md
     ├── api-reference.md
     ├── diagrams.md         # Mermaid 図のサンプル
-    └── meeting-notes/
-        └── 2025-06.md
+    ├── revision-demo.md    # 改訂マーク（revision ディレクティブ）のデモ
+    ├── meeting-notes/
+    │   └── 2025-06.md
+    ├── _ext/
+    │   └── revision_mark.py  # 改訂マーク用のカスタム拡張
+    └── _static/            # CSS など静的ファイル（revision-mark.css ほか）
 ```
 
 ## 基本操作（SSG の作り方）
